@@ -6,99 +6,47 @@
  * TODO - Replace this content of this view to suite the needs of your application.
  */
 Ext.define('MyApp.view.main.Main', {
-    extend: 'Ext.tab.Panel',
-    xtype: 'app-main',
+  extend: 'Ext.panel.Panel',
+  xtype: 'app-main',
 
-    requires: [
-        'Ext.plugin.Viewport',
-        'Ext.window.MessageBox',
+  requires: [
+    'Ext.plugin.Viewport',
+    'Ext.window.MessageBox',
+    'MyApp.view.treelist.TreeList',
+    'MyApp.view.main.MainController',
+    'MyApp.view.main.MainModel',
+    'MyApp.view.treelist.TreeViewModel',
+    'MyApp.view.main.List',
+    'MyApp.view.mainform.RootForm',
+    'MyApp.view.mainform.LeafForm'
 
-        'MyApp.view.main.MainController',
-        'MyApp.view.main.MainModel',
-        'MyApp.view.main.List'
-    ],
+  ],
 
-    controller: 'main',
-    viewModel: 'main',
-
-    ui: 'navigation',
-
-    tabBarHeaderPosition: 1,
-    titleRotation: 0,
-    tabRotation: 0,
-
-    header: {
-        layout: {
-            align: 'stretchmax'
-        },
-        title: {
-            bind: {
-                text: '{name}'
-            },
-            flex: 0
-        },
-        iconCls: 'fa-th-list'
-    },
-
-    tabBar: {
-        flex: 1,
-        layout: {
-            align: 'stretch',
-            overflowHandler: 'none'
-        }
-    },
-
-    responsiveConfig: {
-        tall: {
-            headerPosition: 'top'
-        },
-        wide: {
-            headerPosition: 'left'
-        }
-    },
-
-    defaults: {
-        bodyPadding: 20,
-        tabConfig: {
-            plugins: 'responsive',
-            responsiveConfig: {
-                wide: {
-                    iconAlign: 'left',
-                    textAlign: 'left'
-                },
-                tall: {
-                    iconAlign: 'top',
-                    textAlign: 'center',
-                    width: 120
-                }
-            }
-        }
-    },
-
-    items: [{
-        title: 'Home',
-        iconCls: 'fa-home',
-        // The following grid shares a store with the classic version's grid as well!
-        items: [{
-            xtype: 'mainlist'
-        }]
+  controller: 'main',
+  viewModel: 'main',
+  layout: 'border',
+  
+  items: [
+    {
+      region: 'west',
+      width: 250,
+      xtype: 'treelist'
     }, {
-        title: 'Users',
-        iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }, {
-        title: 'Groups',
-        iconCls: 'fa-users',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }]
+      region: 'center',
+      xtype: 'form'
+    },
+    {
+      region: 'south',
+      xtype: 'button',
+      text: 'Add New Node to the tree',
+      handler: function() {
+        var c = this.up('app-main').down('treelist').getRootNode();
+        c.appendChild({
+          text: 'new node to the root',
+          leaf: true
+        })
+      }
+    }
+  ]
+
 });
