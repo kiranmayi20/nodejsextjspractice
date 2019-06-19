@@ -6,16 +6,18 @@
  * TODO - Replace this content of this view to suite the needs of your application.
  */
 Ext.define('MyApp.view.main.Main', {
-    extend: 'Ext.tab.Panel',
+    extend: 'Ext.panel.Panel',
     xtype: 'app-main',
-
+    reference : 'main',
     requires: [
         'Ext.plugin.Viewport',
         'Ext.window.MessageBox',
-
+         'MyApp.view.treelist.TreeList',
         'MyApp.view.main.MainController',
         'MyApp.view.main.MainModel',
-        'MyApp.view.main.List'
+        'MyApp.view.treelist.TreeViewModel',
+        'MyApp.view.main.List',
+        'MyApp.view.addingtrees.AddingTrees'
     ],
 
     controller: 'main',
@@ -26,79 +28,62 @@ Ext.define('MyApp.view.main.Main', {
     tabBarHeaderPosition: 1,
     titleRotation: 0,
     tabRotation: 0,
+     layout : 'border',
+    // header: {
+    //     layout: {
+    //         align: 'stretchmax'
+    //     },
+    //     title: {
+    //         bind: {
+    //             text: '{name}'
+    //         },
+    //         flex: 0
+    //     },
+    //     iconCls: 'fa-th-list'
+    // },
 
-    header: {
-        layout: {
-            align: 'stretchmax'
-        },
-        title: {
-            bind: {
-                text: '{name}'
-            },
-            flex: 0
-        },
-        iconCls: 'fa-th-list'
-    },
+    // tabBar: {
+    //     flex: 1,
+    //     layout: {
+    //         align: 'stretch',
+    //         overflowHandler: 'none'
+    //     }
+    // },
 
-    tabBar: {
-        flex: 1,
-        layout: {
-            align: 'stretch',
-            overflowHandler: 'none'
-        }
-    },
+    // responsiveConfig: {
+    //     tall: {
+    //         headerPosition: 'top'
+    //     },
+    //     wide: {
+    //         headerPosition: 'left'
+    //     }
+    // },
 
-    responsiveConfig: {
-        tall: {
-            headerPosition: 'top'
-        },
-        wide: {
-            headerPosition: 'left'
-        }
-    },
-
-    defaults: {
-        bodyPadding: 20,
-        tabConfig: {
-            plugins: 'responsive',
-            responsiveConfig: {
-                wide: {
-                    iconAlign: 'left',
-                    textAlign: 'left'
-                },
-                tall: {
-                    iconAlign: 'top',
-                    textAlign: 'center',
-                    width: 120
-                }
-            }
-        }
-    },
+    // defaults: {
+    //     bodyPadding: 20,
+    //     tabConfig: {
+    //         plugins: 'responsive',
+    //         responsiveConfig: {
+    //             wide: {
+    //                 iconAlign: 'left',
+    //                 textAlign: 'left'
+    //             },
+    //             tall: {
+    //                 iconAlign: 'top',
+    //                 textAlign: 'center',
+    //                 width: 120
+    //             }
+    //         }
+    //     }
+    // },
 
     items: [{
-        title: 'Home',
-        iconCls: 'fa-home',
-        // The following grid shares a store with the classic version's grid as well!
-        items: [{
-            xtype: 'mainlist'
-        }]
+        region : 'west',
+        width : 250,
+        xtype : 'treelist'
     }, {
-        title: 'Users',
-        iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }, {
-        title: 'Groups',
-        iconCls: 'fa-users',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }]
+       xtype : 'addingtrees',
+       region : 'center'
+    }
+    ]
 });

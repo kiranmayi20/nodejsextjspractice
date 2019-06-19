@@ -19,7 +19,6 @@ Ext.define('MyApp.view.main.List', {
         Ext.Ajax.request({
             url: 'getTables',
             success: function (response) {
-                  debugger;
                 var x = Ext.ComponentQuery.query('grid')[0];
                 var responsedata = Ext.decode(response.responseText);
                 x.getStore().loadData(responsedata);
