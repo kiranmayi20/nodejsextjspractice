@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kiranmayi20/nodejsextjspractice.git"
+    "url": "https://github.com/MounikaReddySadam/Node_Extjs.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kiranmayi20/nodejsextjspractice/issues"
+    "url": "https://github.com/MounikaReddySadam/Node_Extjs/issues"
   },
-  "homepage": "https://github.com/kiranmayi20/nodejsextjspractice#readme",
+  "homepage": "https://github.com/MounikaReddySadam/Node_Extjs#readme",
   "dependencies": {
     "express": "^4.11.2",
     "mysql": "~2.5.4",
